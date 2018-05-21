@@ -1,0 +1,17 @@
+default: &default
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  # access_key_id: AKIAJ44WAOJS7HZASQ4
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  region: <%= ENV["AWS_REGION"] %>
+
+
+development:
+  <<: *default
+  endpoint: http://localhost:8000
+
+test:
+  <<: *default
+  endpoint: http://localhost:8000
+
+production:
+  <<: *default
