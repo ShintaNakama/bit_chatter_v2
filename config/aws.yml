@@ -1,8 +1,10 @@
 default: &default
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
-  # access_key_id: AKIAJ44WAOJS7HZASQ4
   secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
   region: <%= ENV["AWS_REGION"] %>
+  # identity_pool_id: <%= ENV["AWS_IDENTITY_POOL_ID"] %>
+  # user_pool_id: <%= ENV["USER_POOL_ID"] %>
+  # client_id: <%= ENV["CLIENT_ID"] %>
 
 
 development:

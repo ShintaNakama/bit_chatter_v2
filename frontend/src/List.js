@@ -78,18 +78,19 @@ class List extends Component {
   render(){
     const { messages } = this.state;
     return(
-      <div>
+      <div class="my-3 p-3 bg-white rounded box-shadow">
         {messages.map((message) => {
           return (
-            <ul>
-              <li key={ message.id }>
-                  {message.name}<br/>{message.body}<br/>
-                  <button><Link to={'/message/' + message.id + '/edit'}>Edit</Link></button>
-                  {/* javascript:void(0)で遷移を無効化する
-                  react-confirm というモジュールもあるが今回は　window.confirm　でお手軽に対応する */}
-                  <button><a href="javascript:void(0)" onClick={ () => { if (window.confirm('本当に削除しますか？')) this.hundleDestroy(event, message.id) }}>destroy</a></button>
-              </li>
-            </ul>
+            <div class="media text-muted pt-3">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" key={ message.id }>
+                <strong class="text-gray-dark">{message.name}</strong>
+                <strong class="d-block text-gray-dark">{message.body}</strong>
+                <button type="button" class="btn btn-success btn-sm"><Link to={'/message/' + message.id + '/edit'}>Edit</Link></button>
+                {/* javascript:void(0)で遷移を無効化する
+                react-confirm というモジュールもあるが今回は　window.confirm　でお手軽に対応する */}
+                <button type="button" class="btn btn-warning btn-sm"><a href="javascript:void(0)" onClick={ () => { if (window.confirm('本当に削除しますか？')) this.hundleDestroy(event, message.id) }}>destroy</a></button>
+              </div>
+            </div>
           );
         })}
       </div>

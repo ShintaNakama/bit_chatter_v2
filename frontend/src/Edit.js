@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import { Auth } from 'aws-amplify';
 
 const REQUEST_URL_EDIT = 'http://localhost:3000/messages/';
 
@@ -10,11 +11,19 @@ class Edit extends Component {
     console.log(message_id);
     // console.log(message_body);
     // const message_body = this.props.match.params.body
-    this.state = {
-      id: message_id,
-      name: 'shinta',
-      body: ''
-    };
+    let editMessage = this.state = { id: message_id, name: '', body: '' };
+    let user = Auth.currentUserPoolUser();
+    user.then((string) => {
+      editMessage.name = string.username
+      console.log(string.username);
+      }, (error) => {
+      console.error("error", error.message);
+    });
+    // this.state = {
+    //   id: message_id,
+    //   name: 'shinta',
+    //   body: ''
+    // };
   }
 
   componentWillMount() {

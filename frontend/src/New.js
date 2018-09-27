@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
-
+import { Auth } from 'aws-amplify';
 // Request を送るURLを指定(RailsのAPIサーバ)
 const REQUEST_URL = 'http://localhost:3000/messages.json'
 
@@ -10,10 +10,14 @@ class New extends Component {
     // super(props)をよび出すことで、thisを使用できる
     super(props);
     // Message の nameとbodyをthis.stateにセットする
-    this.state = {
-      name: 'shinta',
-      body: ''
-    };
+    let currentUser = this.state = { name: '', body: '' };
+    let user = Auth.currentUserPoolUser();
+    user.then((string) => {
+      currentUser.name = string.username
+      console.log(string.username);
+      }, (error) => {
+      console.error("error", error.message);
+    });
     // thisをbindする
     // this.handleInputValue = this.handleInputValue.bind(this);
   }
